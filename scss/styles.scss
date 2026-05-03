@@ -1,0 +1,91 @@
+
+$boilerGold: #cfb991;
+$agedGold: #8e6f3e;
+$black: #000000;
+$softBlack: #151515;
+$lightGray: #f5f5f5;
+$white: #ffffff;
+$cardShadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+$radius: 14px;
+
+body {
+  background-color: $lightGray;
+  color: $softBlack;
+}
+
+.navbar-brand span {
+  color: $boilerGold;
+  font-weight: 700;
+}
+
+.hero {
+  background: linear-gradient(135deg, $black, $agedGold);
+  color: $white;
+  border-radius: $radius;
+}
+
+.hero .btn-warning {
+  background-color: $boilerGold;
+  border-color: $boilerGold;
+  color: $black;
+}
+
+.major-card {
+  border: 0;
+  height: 100%;
+  box-shadow: $cardShadow;
+}
+
+.major-card img {
+  height: 170px;
+  object-fit: cover;
+}
+
+.major-card .card-title {
+  color: $black;
+  font-weight: 700;
+}
+
+.badge-purdue {
+  background-color: $black;
+  color: $boilerGold;
+}
+
+.section-title {
+  border-left: 8px solid $boilerGold;
+  padding-left: 12px;
+  font-weight: 700;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  background-color: #CFB991; 
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+  color: $white;
+}
+
+.quiz-box {
+  background-color: $white;
+  border-radius: $radius;
+  box-shadow: $cardShadow;
+}
+
+footer {
+  border-top: 4px solid $boilerGold;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    text-align: center;
+  }
+
+  .carousel-item img {
+    height: 230px;
+  }
+}

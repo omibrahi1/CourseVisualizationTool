@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Purdue ACC Course Visualization Tool</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="#top" aria-label="Course Visualization Tool home">
+        <img src="assets/favicon.png" alt="Purdue P favicon logo" width="34" height="34" class="me-2" />
+        <span>ACC Course Viz</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#majors">Majors</a></li>
+          <li class="nav-item"><a class="nav-link" href="#courseCarousel">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quiz">Quiz</a></li>
+          <li class="nav-item"><a class="nav-link" href="#documentation">Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="container my-4">
+    <section class="hero p-4 p-md-5" aria-labelledby="heroTitle">
+      <div class="row align-items-center g-4">
+        <div class="col-md-8">
+          <h1 id="heroTitle" class="display-5 fw-bold">Purdue ACC Course Visualization Tool</h1>
+          <p class="lead mb-3">Explore six undergraduate programs, compare required courses, review career paths, and take a short quiz to find a possible fit.</p>
+          <a href="#majors" class="btn btn-warning btn-lg me-2">Explore Majors</a>
+          <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#aboutProjectModal">About Project</button>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <span class="badge badge-purdue fs-6 p-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Purdue black and gold colors are used through SCSS variables.">CIT 312 Final Project</span>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="container mb-5" aria-labelledby="majorsTitle" id="majors">
+      <h2 id="majorsTitle" class="section-title mb-4">Explore Undergraduate Majors</h2>
+      <div class="row g-4" id="majorCards" aria-live="polite"></div>
+    </section>
+
+    <section class="container mb-5" aria-labelledby="carouselTitle">
+      <h2 id="carouselTitle" class="section-title mb-4">How to Use This Tool</h2>
+      <div id="courseCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#courseCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Required courses slide"></button>
+          <button type="button" data-bs-target="#courseCarousel" data-bs-slide-to="1" aria-label="Career paths slide"></button>
+          <button type="button" data-bs-target="#courseCarousel" data-bs-slide-to="2" aria-label="Quiz slide"></button>
+        </div>
+        <div class="carousel-inner rounded">
+          <div class="carousel-item active">
+            <img src="assets/courses.jpg" class="d-block w-100" alt="Required courses overview slide" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Compare Required Courses</h5>
+              <p>Open each card to view course lists linked to each major.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="assets/jobs.jpg" class="d-block w-100" alt="Career paths overview slide" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Review Career Paths</h5>
+              <p>Each major includes examples of jobs students may pursue.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="assets/quiz.jpg" class="d-block w-100" alt="Quiz overview slide" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Take the Quiz</h5>
+              <p>Answer ten quick questions to see a suggested program.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#courseCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#courseCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="container mb-5" aria-labelledby="quizTitle" id="quiz">
+      <h2 id="quizTitle" class="section-title mb-4">Find Your ACC Fit Quiz</h2>
+      <div class="quiz-box p-4">
+        <p>Choose one answer for each question. The quiz is a simple interest matcher, not an official advising tool.</p>
+        <form id="quizForm" aria-label="Program recommendation quiz"></form>
+        <div class="mt-3 d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-dark" id="scoreQuiz">Show Recommendation</button>
+          <button type="reset" class="btn btn-outline-secondary" form="quizForm" id="resetQuiz">Reset Quiz</button>
+        </div>
+        <div id="quizResult" class="alert alert-warning mt-4 d-none" role="status"></div>
+      </div>
+    </section>
+
+    <section class="container mb-5" id="documentation" aria-labelledby="docTitle">
+      <h2 id="docTitle" class="section-title mb-4">Project Documentation Summary</h2>
+      <div class="accordion" id="documentationAccordion">
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="docOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#docCollapseOne" aria-expanded="true" aria-controls="docCollapseOne">Bootstrap features used</button>
+          </h3>
+          <div id="docCollapseOne" class="accordion-collapse collapse show" aria-labelledby="docOne" data-bs-parent="#documentationAccordion">
+            <div class="accordion-body">This app uses a responsive navbar with hamburger menu, cards, buttons, modals, accordions, carousel, badges, tooltips, alerts, forms, and Bootstrap grid classes.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="docTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docCollapseTwo" aria-expanded="false" aria-controls="docCollapseTwo">Responsiveness</button>
+          </h3>
+          <div id="docCollapseTwo" class="accordion-collapse collapse" aria-labelledby="docTwo" data-bs-parent="#documentationAccordion">
+            <div class="accordion-body">Cards use Bootstrap grid classes such as col-12, col-md-6, and col-lg-4 so they stack on phones, use two columns on tablets, and three columns on larger screens.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="docThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docCollapseThree" aria-expanded="false" aria-controls="docCollapseThree">SCSS, favicon, and accessibility</button>
+          </h3>
+          <div id="docCollapseThree" class="accordion-collapse collapse" aria-labelledby="docThree" data-bs-parent="#documentationAccordion">
+            <div class="accordion-body">SCSS variables define the Purdue colors, shadows, and border radius. A custom favicon is included. Semantic tags, alt text, labels, aria attributes, and visually-hidden text are used for accessibility.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container-fluid bg-dark text-light text-center py-4">
+    <p class="mb-1">Purdue ACC Course Visualization Tool</p>
+  </footer>
+
+  <div class="modal fade" id="aboutProjectModal" tabindex="-1" aria-labelledby="aboutProjectLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="aboutProjectLabel">About This Project</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>This project presents six majors in Purdue's School of Applied and Creative Computing. Each major card includes program information, sample required courses, and career paths.</p>
+          <p>The application uses Bootstrap to make the layout responsive and interactive while using SCSS variables for the Purdue color scheme.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
